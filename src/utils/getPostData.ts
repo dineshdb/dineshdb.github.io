@@ -12,3 +12,4 @@ export default function getPostData(post: Post) {
     readingTime: readingTime(post.rawContent()).text,
   }
 }
+
