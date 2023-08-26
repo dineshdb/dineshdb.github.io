@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Bio from "../../components/Bio.astro";
-import readingTime from "reading-time";
+import calculateReadingTime from "reading-time";
 import { getCollection } from "astro:content";
 import { formatTimeAgo } from "../../utils/relativeTime";
 
@@ -9,7 +9,7 @@ export async function getStaticPaths() {
   const blogEntries = await getCollection("blog");
   return blogEntries.map((entry) => ({
     params: { slug: entry.slug },
-    props: { entry, readingTime: readingTime(entry.body).text },
+    props: { entry, readingTime: calculateReadingTime(entry.body).text },
   }));
 }
 const { entry, readingTime } = Astro.props;
@@ -20,14 +20,14 @@ const { Content } = await entry.render();
   title={entry.data.title}
   description={entry.data.description}
   permalink={`/blog/${entry.data.slug}`}
+  image={entry.data.image}
   current="blog"
 >
   <header>
     <h1>{entry.data.title}</h1>
     <h3>{entry.data.description}</h3>
     <h4>{formatTimeAgo(entry.data.publishDate)} ~ {readingTime}</h4>
-
-    <h5>{entry.data.tags.map((tag) => `#${tag} `)}</h5>
+    <h5>{entry.data.tags.map((tag) => <a href=`/tags/${tag}` class="tag">{`#${tag}`}</a>)}</h5>
     <hr />
   </header>
   <div class="container">
@@ -58,5 +58,8 @@ const { Content } = await entry.render();
   header hr {
     min-width: 100px;
     width: 30%;
+  }
+  a.tag{
+    margin-right: 0.75em;
   }
 </style>

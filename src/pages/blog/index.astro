@@ -1,42 +1,28 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import BlogCard from "../../components/BlogCard.astro";
 
 const title = "Blog";
-const description = "Latest articles.";
-const permalink = `${Astro.site.href}blog`;
+const description = "Latest articles";
 
-import { getCollection } from "astro:content";
-import { formatTimeAgo } from "../../utils/relativeTime";
 const allPosts = await getCollection("blog");
 ---
 
 <BaseLayout
   title={title}
   description={description}
-  permalink={permalink}
+  permalink="/blog"
   current="blog"
 >
   <div class="container">
     <h1>Blog</h1>
     {
       allPosts.map((post, index) => {
-        const href = `/blog/${post.slug}`;
         return (
           <div>
             {index !== 0 && <hr />}
-            <div class="post-item">
-              <h2>
-                <a href={href} class="title">
-                  {post.data.title}
-                </a>
-                <span class="post-item-date">
-                  — {formatTimeAgo(post.data.publishDate)}
-                </span>
-              </h2>
-              <span>{post.data.tags.map((tag) => `#${tag} `)}</span>
-              <p>{post.data.description}</p>
-              <div class="post-item-footer" />
-            </div>
+            <BlogCard post={post} />
           </div>
         );
       })

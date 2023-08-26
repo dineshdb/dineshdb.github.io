@@ -3,15 +3,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
 import homeIllustration from "../assets/home-illustration.webp";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
-
-const permalink = Astro.site.href;
 ---
 
-<BaseLayout
-  title={SITE_TITLE}
-  description={SITE_DESCRIPTION}
-  permalink={permalink}
->
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <div class="home-container">
     <div class="home-copy">
       <h1>{SITE_DESCRIPTION}</h1>

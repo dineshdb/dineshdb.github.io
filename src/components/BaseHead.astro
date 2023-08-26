@@ -6,13 +6,15 @@ export interface Props {
   title: string;
   description: string;
   permalink: string;
+  image?: string;
 }
 
-const { title, description, permalink } = Astro.props;
-const socialUrl = Astro.site.href + "assets/social.png";
+const baseUrl = Astro.site?.href ?? "";
+const { title, description, image } = Astro.props;
+const permalink = baseUrl + Astro.props.permalink;
+const socialUrl = image ?? baseUrl + "/assets/social.png";
 ---
 
-<!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width" />
 <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -39,16 +41,21 @@ const socialUrl = Astro.site.href + "assets/social.png";
 <!-- This is intentionally inlined to avoid FOUC -->
 <script>
   const root = document.documentElement;
-  const theme = localStorage.getItem("theme");
-  const darkModePreference = window.matchMedia("(prefers-color-scheme: dark)");
-
   const updateTheme = (darkmode: boolean) =>
     darkmode
       ? root.classList.add("theme-dark")
       : root.classList.remove("theme-dark");
 
+  const darkModePreference = window.matchMedia("(prefers-color-scheme: dark)");
+
+  // update theme if user had set a config on localStorage
+  const theme = localStorage.getItem("theme");
   updateTheme(theme === "dark" || (!theme && darkModePreference.matches));
-  darkModePreference.addEventListener("change", (darkModePreference) =>
-    updateTheme(!theme && darkModePreference.matches)
-  );
+
+  // user has no preference, let's update with system
+  if (!theme) {
+    darkModePreference.addEventListener("change", (darkModePreference) =>
+      updateTheme(darkModePreference.matches)
+    );
+  }
 </script>
