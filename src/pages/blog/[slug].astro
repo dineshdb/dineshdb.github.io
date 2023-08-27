@@ -4,6 +4,7 @@ import Bio from "../../components/Bio.astro";
 import calculateReadingTime from "reading-time";
 import { getCollection } from "astro:content";
 import { formatTimeAgo } from "../../utils/relativeTime";
+import Tag from "../../components/Tag.astro";
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection("blog");
@@ -23,15 +24,19 @@ const { Content } = await entry.render();
   image={entry.data.image}
   current="blog"
 >
-  <header>
+  <header class="text-center">
     <h1>{entry.data.title}</h1>
     <h3>{entry.data.description}</h3>
-    <h4>{formatTimeAgo(entry.data.publishDate)} ~ {readingTime}</h4>
-    <h5>{entry.data.tags.map((tag) => <a href=`/tags/${tag}` class="tag">{`#${tag}`}</a>)}</h5>
+    <h4 class="text-secondary">
+      {formatTimeAgo(entry.data.publishDate)} ~ {readingTime}
+    </h4>
+    <h5 class="text-secondary">
+      {entry.data.tags.map((tag) => <Tag tag={tag} />)}
+    </h5>
     <hr />
   </header>
   <div class="container">
-    <article class="content">
+    <article>
       <Content />
     </article>
     <hr />
@@ -40,10 +45,6 @@ const { Content } = await entry.render();
 </BaseLayout>
 
 <style>
-  header {
-    text-align: center;
-  }
-
   header h1 {
     margin-bottom: 0.7em;
   }
@@ -58,8 +59,5 @@ const { Content } = await entry.render();
   header hr {
     min-width: 100px;
     width: 30%;
-  }
-  a.tag{
-    margin-right: 0.75em;
   }
 </style>

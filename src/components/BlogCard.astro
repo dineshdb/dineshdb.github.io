@@ -1,32 +1,20 @@
 ---
 import { formatTimeAgo } from "../utils/relativeTime";
+import Tag from "./Tag.astro";
 
 const { post } = Astro.props;
 ---
 
 <div class="post-item">
   <header>
-    <a href={`/blog/${post.slug}`} class="title">
+    <a href={`/blog/${post.slug}`} class="no-underline font-semibold text-3xl">
       {post.data.title}
     </a>
-	<span class="post-item-date">
-		— {formatTimeAgo(post.data.publishDate)}
-	  </span>
+    <span class="text-secondary">
+      — {formatTimeAgo(post.data.publishDate)}
+    </span>
   </header>
 
-  <span>{post.data.tags.map((tag: string) => <a href=`/tags/${tag}` class="tag">#{tag}</a>)}</span>
-
+  <span>{post.data.tags.map((tag: string) => <Tag tag={tag} />)}</span>
   <p>{post.data.description}</p>
-  <div class="post-item-footer"></div>
 </div>
-<style>
-	a.tag {
-		margin-right: 0.75em;
-	}
-	header {
-		.title {
-			font-weight: 600;
-			font-size: 1.75em;
-		}
-	}
-</style>
