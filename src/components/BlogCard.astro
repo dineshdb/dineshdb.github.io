@@ -5,20 +5,28 @@ const { post } = Astro.props;
 ---
 
 <div class="post-item">
-  <h2>
+  <header>
     <a href={`/blog/${post.slug}`} class="title">
       {post.data.title}
     </a>
-    <span class="post-item-date">
-      — {formatTimeAgo(post.data.publishDate)}
-    </span>
-  </h2>
+	<span class="post-item-date">
+		— {formatTimeAgo(post.data.publishDate)}
+	  </span>
+  </header>
+
   <span>{post.data.tags.map((tag: string) => <a href=`/tags/${tag}` class="tag">#{tag}</a>)}</span>
+
   <p>{post.data.description}</p>
   <div class="post-item-footer"></div>
 </div>
 <style>
 	a.tag {
 		margin-right: 0.75em;
+	}
+	header {
+		.title {
+			font-weight: 600;
+			font-size: 1.75em;
+		}
 	}
 </style>
