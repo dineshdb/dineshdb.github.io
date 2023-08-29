@@ -1,6 +1,7 @@
 import { defineConfig, sharpImageService } from "astro/config";
 import mdx from "@astrojs/mdx";
 import UnoCSS from "unocss/astro";
+import presetWind from "@unocss/preset-wind";
 import compressor from "astro-compressor";
 import preact from "@astrojs/preact";
 
@@ -14,6 +15,7 @@ export default defineConfig({
     compressor(),
     UnoCSS({
       // injectReset: true,
+      presets: [presetWind()],
     }),
     preact({
       compat: true,
