@@ -3,16 +3,26 @@
   --text-main: #36393b;
   --text-secondary: #6b6f72;
   --primary-color: #548e9b;
+
+  /* dark theme colors */
+  --dark-background-body: #202122;
+  --dark-text-main: #fff;
+  --dark-text-secondary: #ccc;
+  --dark-primary-color: #548e9b;
+  
   --font-family-serif: Merriweather, serif;
   --font-family-sans: 'Fira Sans', sans-serif;
   --font-family-mono: 'SF Mono', menlo, inconsolata, monospace;
 }
 
-:root.theme-dark {
-  --background-body: #202122;
-  --text-main: #fff;
-  --text-secondary: #ccc;
-  --primary-color: #548e9b;
+
+@media(prefers-color-scheme: dark) {
+  :root {
+    --background-body: var(--dark-background-body);
+    --text-main: var(--dark-text-main);
+    --text-secondary: var(--dark-text-secondary);
+    --primary-color: var(--dark-primary-color);
+  }
 }
 
 
