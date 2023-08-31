@@ -1,11 +1,10 @@
 import { defineConfig, sharpImageService } from "astro/config";
 import mdx from "@astrojs/mdx";
-import UnoCSS from "unocss/astro";
 import presetWind from "@unocss/preset-wind";
 import compressor from "astro-compressor";
 import preact from "@astrojs/preact";
-
 import unocss from "@unocss/astro";
+import presetAttributify from "@unocss/preset-attributify";
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,14 +12,12 @@ export default defineConfig({
   integrations: [
     mdx(),
     compressor(),
-    UnoCSS({
-      // injectReset: true,
-      presets: [presetWind()],
-    }),
     preact({
       compat: true,
     }),
-    unocss(),
+    unocss({
+      presets: [presetWind(), presetAttributify()],
+    }),
   ],
   markdown: {
     shikiConfig: {
