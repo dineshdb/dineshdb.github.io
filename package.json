@@ -11,16 +11,16 @@
   "dependencies": {
     "@astrojs/mdx": "^0.8.3",
     "@astrojs/preact": "^2.2.2",
-    "reading-time": "^1.5.0",
-    "sharp": "^0.32.5",
     "@unocss/astro": "^0.55.2",
     "@unocss/preset-attributify": "^0.55.3",
     "@unocss/preset-wind": "^0.55.3",
     "@unocss/reset": "^0.55.2",
-    "astro": "^2.10.14",
+    "astro": "^3.0.7",
     "astro-compressor": "^0.4.0",
     "postcss": "^8.4.28",
     "preact": "^10.6.5",
-    "rehype-external-links": "^2.0.0"
+    "reading-time": "^1.5.0",
+    "rehype-external-links": "^2.0.0",
+    "sharp": "^0.32.5"
   }
 }

@@ -1,4 +1,4 @@
-import { defineConfig, sharpImageService } from "astro/config";
+import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import presetWind from "@unocss/preset-wind";
 import compressor from "astro-compressor";
@@ -32,12 +32,5 @@ export default defineConfig({
         },
       ],
     ],
-  },
-  experimental: {
-    assets: true,
-    viewTransitions: true,
-  },
-  image: {
-    service: sharpImageService(),
   },
 });
