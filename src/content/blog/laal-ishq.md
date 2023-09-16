@@ -4,9 +4,8 @@ author: dineshdb
 publishDate: 2023-08-26
 description: Creating rhythm can be powerful tool to finish your projects. I'm listening to this song to remind me of that.
 tags:
-- random
-- motivation
-
+  - random
+  - motivation
 ---
 
 I just read an article on how having consistent rhythm is important in

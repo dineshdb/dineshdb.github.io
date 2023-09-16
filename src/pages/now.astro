@@ -1,0 +1,110 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { formatTimeAgo } from "../utils/relativeTime";
+
+const title = "What I am doing now";
+const description = "Now";
+const permalink = `/now`;
+const updatedOn = "2023-09-16T17:00:00+05:45";
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  permalink={permalink}
+  current="now"
+>
+  <div class="w-[42em] m-auto">
+    <h1>{title}</h1>
+    <p>Updated {formatTimeAgo(new Date(updatedOn))}</p>
+
+    <p>Location: Kathmandu, Nepal.</p>
+
+    <p>
+      <i>We were born with no purpose at all. You shouldn't die the same.</i>
+    </p>
+
+    <section>
+      <h2>My current goal is</h2>
+      <p>
+        to create a secondary source of income that doesn't require me to be
+        consistently present all the time. Bank interest and stock-markets don't
+        cut it because I want to get more involved but not as much as my day
+        job.
+      </p>
+    </section>
+
+    <section>
+      <h2>Professional title?</h2>
+      <p>Software Engineer at Houzz, Inc.</p>
+    </section>
+
+    <section>
+      <h2>What do I do?</h2>
+      <p>I create software tools to solve your needs.</p>
+    </section>
+
+    <section>
+      <h2>Learning:</h2>
+      <ul>
+        <li>
+          Swimming: I'm a self-taught beginner. I practice at National Sports
+          Center, Chysal regularly in the morning.
+        </li>
+        <li>
+          Biking: Learning to ride my petrol-scooter(<i
+            >I know, I should have gone with the electric one</i
+          >). I know the basics and have ridden about 1400km of distance but
+          that doesn't make me comfortable for highly dangerous scenarious and
+          emergency braking. I want to be a pro at it. Would love some pointers
+          or trainers.
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Personal Development:</h2>
+      <ul>
+        <li>
+          Focusing: I'm trying to focus on doing one thing at a time. One tab,
+          one doc, one ticket. No more jumping between tiktok, ticket and a bug
+          😳. It's a real **struggle**.
+        </li>
+      </ul>
+
+      <section>
+        <h2>Reading:</h2>
+        <ul>
+          <li>The Code of the Extraordinary Mind by Vishen Lakhiani</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Reading Recommendations:</h2>
+        <ul>
+          <li>
+            <a
+              href="https://harpers.org/archive/2015/10/the-mother-of-all-questions/?single=1"
+              >The Mother of All Questions
+            </a> by Rebecca Solnit
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Work:</h2>
+        <ul>
+          <li>
+            Dayjob: Building websites and services for interior designers and
+            home-owners at Houzz Inc.
+          </li>
+        </ul>
+      </section>
+    </section>
+
+    <p>
+      This is <a href="https://nownownow.com/about">now</a> page and you too
+      should have one.
+    </p>
+  </div>
+</BaseLayout>

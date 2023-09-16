@@ -9,14 +9,13 @@
   --dark-text-main: #fff;
   --dark-text-secondary: #ccc;
   --dark-primary-color: #548e9b;
-  
-  --font-family-serif: Merriweather, serif;
-  --font-family-sans: 'Fira Sans', sans-serif;
-  --font-family-mono: 'SF Mono', menlo, inconsolata, monospace;
+
+  --font-family-serif: Calibri, Cambria, Helvetica, serif;
+  --font-family-sans: "Fira Sans", sans-serif;
+  --font-family-mono: "SF Mono", menlo, inconsolata, monospace;
 }
 
-
-@media(prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
     --background-body: var(--dark-background-body);
     --text-main: var(--dark-text-main);
@@ -24,7 +23,6 @@
     --primary-color: var(--dark-primary-color);
   }
 }
-
 
 *,
 *:before,
@@ -95,8 +93,12 @@ a:hover {
 p a {
   text-decoration: none;
   box-shadow: inset 0 -0.12em 0 var(--primary-color);
-  -webkit-transition: box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
-  transition: box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+  -webkit-transition:
+    box-shadow 0.2s ease-in-out,
+    color 0.2s ease-in-out;
+  transition:
+    box-shadow 0.2s ease-in-out,
+    color 0.2s ease-in-out;
 }
 
 p a:hover {
@@ -118,7 +120,7 @@ hr {
 }
 
 code {
-  font-family: 'SF Mono', menlo, inconsolata, monospace;
+  font-family: "SF Mono", menlo, inconsolata, monospace;
   font-size: calc(1em - 2px);
   color: #555;
   padding: 0.2em 0.4em;
