@@ -5,6 +5,7 @@ import calculateReadingTime from "reading-time";
 import { getCollection } from "astro:content";
 import { formatTimeAgo } from "../../utils/relativeTime";
 import Tag from "../../components/Tag.astro";
+import WebMentions from "../../components/WebMentions.tsx";
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection("blog");
@@ -39,6 +40,9 @@ const { Content } = await entry.render();
     <article>
       <Content />
     </article>
+
+    <WebMentions client:only="preact" />
+
     <hr />
     <Bio />
   </div>

@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
+    "fmt": "prettier -w .",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -18,9 +19,14 @@
     "astro": "^3.0.7",
     "astro-compressor": "^0.4.0",
     "postcss": "^8.4.28",
-    "preact": "^10.6.5",
+    "preact": "^10.17.1",
     "reading-time": "^1.5.0",
     "rehype-external-links": "^2.0.0",
-    "sharp": "^0.32.5"
+    "sharp": "^0.32.5",
+    "swr": "^2.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.6.2",
+    "prettier": "^3.0.3"
   }
 }
