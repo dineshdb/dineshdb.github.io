@@ -3,19 +3,19 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Bio from "../../components/Bio.astro";
 import calculateReadingTime from "reading-time";
 import { getCollection } from "astro:content";
-import { formatTimeAgo } from "../../utils/relativeTime";
 import Tag from "../../components/Tag.astro";
-import WebMentions from "../../components/WebMentions.tsx";
+import WebMentions from "../../components/WebMentions";
+import RelativeDateTime from "../../components/RalativeDateTime";
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection("blog");
   return blogEntries.map((entry) => ({
     params: { slug: entry.slug },
-    props: { entry, readingTime: calculateReadingTime(entry.body).text },
+    props: { entry, readingTime: calculateReadingTime(entry.body) },
   }));
 }
 const { entry, readingTime } = Astro.props;
-const { Content } = await entry.render();
+const { Content, remarkPluginFrontmatter } = await entry.render();
 ---
 
 <BaseLayout
@@ -29,14 +29,17 @@ const { Content } = await entry.render();
     <h1>{entry.data.title}</h1>
     <h3>{entry.data.description}</h3>
     <h4 class="text-secondary">
-      {formatTimeAgo(entry.data.publishDate)} ~ {readingTime}
+      Updated <RelativeDateTime
+        datetime={remarkPluginFrontmatter.lastModified}
+      />
+      <time datetime={`P${readingTime.minutes}M`}> ~ {readingTime.text}</time>
     </h4>
     <h5 class="text-secondary">
       {entry.data.tags.map((tag) => <Tag tag={tag} />)}
     </h5>
     <hr />
   </header>
-  <div class="container">
+  <div class="max-w-[42rem] m-auto">
     <article>
       <Content />
     </article>

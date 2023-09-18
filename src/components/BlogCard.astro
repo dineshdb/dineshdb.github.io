@@ -1,5 +1,5 @@
 ---
-import { formatTimeAgo } from "../utils/relativeTime";
+import RelativeDateTime from "./RalativeDateTime";
 import Tag from "./Tag.astro";
 
 const { post } = Astro.props;
@@ -11,7 +11,10 @@ const { post } = Astro.props;
       {post.data.title}
     </a>
     <span class="text-secondary">
-      — {formatTimeAgo(post.data.publishDate)}
+      — <RelativeDateTime
+        datetime={post.data.publishDate}
+        client:only="preact"
+      />
     </span>
   </header>
 

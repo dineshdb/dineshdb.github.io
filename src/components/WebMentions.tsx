@@ -1,9 +1,8 @@
 import useSWR from "swr";
-import { formatTimeAgo } from "../utils/relativeTime";
+import RelativeDateTime from "./RalativeDateTime";
+const fetcher = (url) => fetch(url).then((res) => res.json());
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
-
-export default function Greeting() {
+export default function WebMention() {
   const url = `https://webmention.io/api/mentions.jf2?target=${window.location.href}`;
   const { data: result, error } = useSWR(url, fetcher);
 
@@ -35,7 +34,7 @@ function Mention({ url, author: { name, photo }, published, content }) {
             {name}{" "}
           </a>
           <span class="pl-2 text-xs">
-            <time title={published}>{formatTimeAgo(published)}</time>
+            <RelativeDateTime datetime={published} />
           </span>
         </div>
 

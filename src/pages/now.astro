@@ -1,11 +1,12 @@
 ---
+import RelativeDateTime from "../components/RalativeDateTime";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { formatTimeAgo } from "../utils/relativeTime";
+import { getLastModifiedDate } from "../utils/fileLastModifiedDate";
 
+const lastModified = getLastModifiedDate(`src/pages/now.astro`);
 const title = "What I am doing now";
 const description = "Now";
 const permalink = `/now`;
-const updatedOn = "2023-09-16T17:00:00+05:45";
 ---
 
 <BaseLayout
@@ -16,7 +17,8 @@ const updatedOn = "2023-09-16T17:00:00+05:45";
 >
   <div class="max-w-[42rem] m-auto">
     <h1>{title}</h1>
-    <p>Updated {formatTimeAgo(new Date(updatedOn))}</p>
+     Updated
+    <RelativeDateTime datetime={lastModified} client:only="preact" />
 
     <p>Location: Kathmandu, Nepal.</p>
 
