@@ -6,6 +6,7 @@ import preact from "@astrojs/preact";
 import unocss from "@unocss/astro";
 import presetAttributify from "@unocss/preset-attributify";
 import { modifiedTime } from "./src/utils/remarkLastModified";
+import svelte from "@astrojs/svelte";
 
 // https://astro.build/config
 export default defineConfig({
@@ -19,6 +20,7 @@ export default defineConfig({
     unocss({
       presets: [presetWind(), presetAttributify()],
     }),
+    svelte(),
   ],
   markdown: {
     shikiConfig: {

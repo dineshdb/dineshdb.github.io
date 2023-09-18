@@ -4,8 +4,8 @@ import Bio from "../../components/Bio.astro";
 import calculateReadingTime from "reading-time";
 import { getCollection } from "astro:content";
 import Tag from "../../components/Tag.astro";
-import WebMentions from "../../components/WebMentions";
-import RelativeDateTime from "../../components/RalativeDateTime";
+import WebMentions from "../../components/WebMentions.svelte";
+import RelativeDateTime from "../../components/RelativeDateTime.svelte";
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection("blog");
@@ -31,6 +31,7 @@ const { Content, remarkPluginFrontmatter } = await entry.render();
     <h4 class="text-secondary">
       Updated <RelativeDateTime
         datetime={remarkPluginFrontmatter.lastModified}
+        client:only="svelte"
       />
       <time datetime={`P${readingTime.minutes}M`}> ~ {readingTime.text}</time>
     </h4>
@@ -44,7 +45,7 @@ const { Content, remarkPluginFrontmatter } = await entry.render();
       <Content />
     </article>
 
-    <WebMentions client:only="preact" />
+    <WebMentions client:only="svelte" />
 
     <hr />
     <Bio />
