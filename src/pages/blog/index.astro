@@ -17,15 +17,10 @@ const allPosts = await getAllBlogItems();
   current="blog"
 >
   <div class="w-[42rem] m-auto">
-    <h1>Blog</h1>
+    <h1 class="text-4xl">Blog</h1>
     {
       allPosts.map((post, index) => {
-        return (
-          <div>
-            {index !== 0 && <hr />}
-            <BlogCard post={post} />
-          </div>
-        );
+        return <BlogCard post={post} />;
       })
     }
   </div>

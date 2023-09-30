@@ -32,19 +32,19 @@ const { Content, remarkPluginFrontmatter } = await entry.render();
   current="blog"
 >
   <header class="text-center">
-    <h1>{entry.data.title}</h1>
-    <h3>{entry.data.description}</h3>
-    <h4 class="text-secondary">
+    <h1 class="text-4xl">{entry.data.title}</h1>
+    <h3 class="text-2xl">{entry.data.description}</h3>
+    <h3 class="text-secondary">
       Updated <RelativeDateTime
         datetime={remarkPluginFrontmatter.lastModified}
         client:only="svelte"
       />
       <time datetime={`P${readingTime.minutes}M`}> ~ {readingTime.text}</time>
-    </h4>
-    <h5 class="text-secondary">
+    </h3>
+    <h4 class="text-secondary">
       {entry.data.tags.map((tag) => <Tag tag={tag} />)}
       <Tag tag="TIL" />
-    </h5>
+    </h4>
     {
       entry.data.source && (
         <a
