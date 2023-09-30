@@ -21,7 +21,26 @@ const authors = defineCollection({
   }),
 });
 
+const til = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    publishDate: z.date(),
+    tags: z.array(z.string()),
+    source: z
+      .object({
+        title: z.string(),
+        href: z.string(),
+        image: z.string().optional(),
+      })
+      .optional(),
+    author: reference("authors"),
+  }),
+});
+
 export const collections = {
   blog,
   authors,
+  til,
 };

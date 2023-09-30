@@ -2,11 +2,12 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import BlogCard from "../../components/BlogCard.astro";
+import { getAllBlogItems } from "../../utils/getAllBlogItems";
 
 const title = "Blog";
 const description = "Latest articles";
 
-const allPosts = await getCollection("blog");
+const allPosts = await getAllBlogItems();
 ---
 
 <BaseLayout

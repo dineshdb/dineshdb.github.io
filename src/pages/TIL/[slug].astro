@@ -1,0 +1,91 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Bio from "../../components/Bio.astro";
+import calculateReadingTime from "reading-time";
+import { getCollection } from "astro:content";
+import Tag from "../../components/Tag.astro";
+import WebMentions from "../../components/WebMentions.svelte";
+import RelativeDateTime from "../../components/RelativeDateTime.svelte";
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection("til");
+  return blogEntries.map((entry) => {
+    return {
+      params: { slug: entry.slug },
+      props: {
+        entry,
+        readingTime: calculateReadingTime(entry.body),
+      },
+    };
+  });
+}
+
+const { entry, readingTime } = Astro.props;
+const { Content, remarkPluginFrontmatter } = await entry.render();
+---
+
+<BaseLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  permalink={entry.data.slug}
+  image={entry.data.image}
+  current="blog"
+>
+  <header class="text-center">
+    <h1>{entry.data.title}</h1>
+    <h3>{entry.data.description}</h3>
+    <h4 class="text-secondary">
+      Updated <RelativeDateTime
+        datetime={remarkPluginFrontmatter.lastModified}
+        client:only="svelte"
+      />
+      <time datetime={`P${readingTime.minutes}M`}> ~ {readingTime.text}</time>
+    </h4>
+    <h5 class="text-secondary">
+      {entry.data.tags.map((tag) => <Tag tag={tag} />)}
+      <Tag tag="TIL" />
+    </h5>
+    {
+      entry.data.source && (
+        <a
+          href={entry.data.source.href}
+          target="_blank"
+          rel="noopener"
+          class="font-semibold"
+        >
+          {entry.data.source.title}
+        </a>
+      )
+    }
+
+    <hr />
+  </header>
+  <div class="max-w-[42rem] m-auto">
+    <article>
+      <Content />
+    </article>
+
+    <WebMentions client:only="svelte" />
+
+    <hr />
+    <Bio />
+  </div>
+</BaseLayout>
+
+<style>
+  header h1 {
+    margin-bottom: 0.7em;
+  }
+
+  header p {
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-family: var(--font-family-sans);
+    font-weight: 600;
+  }
+
+  header hr {
+    min-width: 100px;
+    width: 30%;
+  }
+</style>
