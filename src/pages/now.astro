@@ -1,5 +1,5 @@
 ---
-import RelativeDateTime from "../components/RelativeDateTime.svelte";
+import DateTime from "../components/DateTime.svelte";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getLastModifiedDate } from "../utils/fileLastModifiedDate";
 
@@ -18,7 +18,7 @@ const permalink = `/now`;
   <div class="max-w-[42rem] m-auto">
     <h1>{title}</h1>
      Updated
-    <RelativeDateTime datetime={lastModified} client:only="svelte" />
+    <DateTime datetime={lastModified} />
 
     <p>Location: Kathmandu, Nepal.</p>
 

@@ -3,6 +3,12 @@ const formatter = new Intl.RelativeTimeFormat(undefined, {
   style: "narrow",
 });
 
+const dateTimeFormatter = new Intl.DateTimeFormat("de-DE", {
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+});
+
 interface Division {
   amount: number;
   name: Intl.RelativeTimeFormatUnit;
@@ -27,4 +33,8 @@ export function formatTimeAgo(date: Date) {
     }
     duration /= division.amount;
   }
+}
+
+export function formatDate(date: Date) {
+  return dateTimeFormatter.format(date);
 }

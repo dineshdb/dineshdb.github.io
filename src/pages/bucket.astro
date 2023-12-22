@@ -1,0 +1,42 @@
+---
+import DateTime from "../components/DateTime.svelte";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getLastModifiedDate } from "../utils/fileLastModifiedDate";
+
+const lastModified = getLastModifiedDate(`src/pages/wish.astro`);
+const title = "My bucket list";
+const description = "Bucket list";
+const permalink = `/bucket`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  permalink={permalink}
+  current="now"
+>
+  <div class="max-w-[42rem] m-auto">
+    <h1>{title}</h1>
+     Updated
+    <DateTime datetime={lastModified} />
+
+    <p></p>
+
+    <section>
+      <h2>Physical and Travel</h2>
+      <ul>
+        <li>Annapurna Base Camp Trek</li>
+        <li>Bungee Jump</li>
+        <li>Maldives and Sri Lanka trip</li>
+        <li>Long voyage on a sea</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Life</h2>
+      <ul>
+        <li>Build a happy family with the love of my life</li>
+      </ul>
+    </section>
+  </div>
+</BaseLayout>

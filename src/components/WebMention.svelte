@@ -1,5 +1,5 @@
 <script>
-  import RelativeDateTime from "./RelativeDateTime.svelte";
+  import RelativeDateTime from "./DateTime.svelte";
   export let published;
   export let content;
   export let url;

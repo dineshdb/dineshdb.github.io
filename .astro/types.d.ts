@@ -189,6 +189,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"defining-my-values.md": {
+	id: "defining-my-values.md";
+  slug: "defining-my-values";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 "how-to-use-geo-fencing.md": {
 	id: "how-to-use-geo-fencing.md";
   slug: "how-to-use-geo-fencing";
@@ -202,6 +209,15 @@ declare module 'astro:content' {
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+};
+"project": {
+"liquid-metal/README.md": {
+	id: "liquid-metal/README.md";
+  slug: "liquid-metal/readme";
+  body: string;
+  collection: "project";
+  data: any
 } & { render(): Render[".md"] };
 };
 "til": {

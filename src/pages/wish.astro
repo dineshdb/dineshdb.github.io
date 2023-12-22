@@ -1,0 +1,67 @@
+---
+import DateTime from "../components/DateTime.svelte";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const lastUpdated = "2023/12/23";
+const title = "My wishlist";
+const description = "Wish";
+const permalink = `/wish`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  permalink={permalink}
+  current="now"
+>
+  <div class="max-w-[42rem] m-auto">
+    <h1>{title}</h1>
+     Updated
+    <DateTime datetime={lastUpdated} />
+
+    <p></p>
+
+    <section>
+      <h2>Charities</h2>
+       Don't bring any surprise gifts above 10 USD. Instead, you can donate to
+      any of following charities in my name if you want to gift me.
+
+      <ol>
+        <li>
+          <a href="https://nicnepal.org/contributions"
+            >National Innovation Center</a
+          > to promote innovation in Nepali land
+        </li>
+        <li>
+          <a href="https://www.givewell.org/">Give Well</a> for sustainable
+          charity
+        </li>
+        <li>
+          <a href="https://www.mozilla.org/">Mozilla</a> for sustainable
+          internet
+        </li>
+        <li>
+          <a href="https://archive.org/donate">Internet Archive</a>
+        </li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Lifestyle</h2>
+      <ul>
+        <li>to live a minimalist sustainable life</li>
+        <li>to create and produce things, to build something</li>
+        <li>to inspire and empower people to go beyond their means</li>
+        <li>to be a doer and a dreamer, in that order</li>
+        <li>to go on a big adventures, few times a year</li>
+        <li>to be surrounded by friends</li>
+      </ul>
+    </section>
+
+    <p>
+      This is inspired from <a href="https://taylor.town/wish-manifesto"
+        >Wish Manifesto</a
+      >.
+    </p>
+  </div>
+</BaseLayout>

@@ -1,5 +1,5 @@
 ---
-import RelativeDateTime from "./RelativeDateTime.svelte";
+import DateTime from "./DateTime.svelte";
 import Tag from "./Tag.astro";
 
 const { post } = Astro.props;
@@ -11,10 +11,7 @@ const { post } = Astro.props;
       {post.data.title}
     </a>
     <span class="text-secondary">
-      — <RelativeDateTime
-        datetime={post.data.publishDate}
-        client:only="svelte"
-      />
+      — <DateTime datetime={post.data.publishDate} />
     </span>
   </header>
 
