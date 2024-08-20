@@ -8,8 +8,8 @@ tags:
   - idea
 ---
 
-I bought a cheap 24 inch BenQ monitor BENQ GW2490 couple of weeks ago. It has different modes for
-different usecases. It lists:
+I bought a cheap 24 inch BenQ monitor BENQ GW2490 couple of weeks ago. It has
+different modes for different usecases. It lists:
 
 - User mode
 - Standard mode
