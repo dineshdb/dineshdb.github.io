@@ -2,7 +2,7 @@
 title: "Just Because..."
 author: dineshdb
 publishDate: 2023-10-07T09:15+05:45
-description: Catchy lyrics, nice rhythm. I ❤️ it 
+description: Catchy lyrics, nice rhythm. I ❤️ it
 tags:
   - song
 ---

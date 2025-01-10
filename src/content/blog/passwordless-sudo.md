@@ -30,4 +30,3 @@ dineshdb  ALL=(ALL) NOPASSWD: ALL
 
 Yep. That's it. You go to the line for your target user and replace it with
 something similar. Remember the `NOPASSWD: ALL` bit. Spaces and tabs matter.
-
