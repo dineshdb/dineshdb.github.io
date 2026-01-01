@@ -1,0 +1,42 @@
+---
+export interface Props {
+  datetime: Date | string | undefined;
+}
+
+const { datetime } = Astro.props;
+
+let formattedDate = "";
+let isoString = "";
+
+if (datetime) {
+  const date = new Date(datetime);
+
+  // Validate the date
+  if (!isNaN(date.getTime())) {
+    // Short human-readable date format: "Jan 15" or "Jan 15, 2023"
+    const shortDateFormatter = new Intl.DateTimeFormat("en-US", {
+      month: "short",
+      day: "numeric",
+    });
+
+    const shortDateFormatterWithYear = new Intl.DateTimeFormat("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
+
+    const currentYear = new Date().getFullYear();
+    const dateYear = date.getFullYear();
+
+    formattedDate = currentYear === dateYear
+      ? shortDateFormatter.format(date)
+      : shortDateFormatterWithYear.format(date);
+
+    isoString = date.toISOString();
+  }
+}
+---
+
+{formattedDate && (
+  <time datetime={isoString}>{formattedDate}</time>
+)}

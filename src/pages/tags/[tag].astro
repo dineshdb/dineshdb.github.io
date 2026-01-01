@@ -1,41 +1,84 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import BlogCard from "../../components/BlogCard.astro";
+import NowCard from "../../components/NowCard.astro";
 import { getAllBlogItems } from "../../utils/getAllBlogItems";
+import { getCollection } from "astro:content";
+import { renderUpdates } from "../../utils/renderUpdates";
 
 export async function getStaticPaths() {
   const allPosts = await getAllBlogItems();
-  const uniqueTags = [
-    ...new Set(allPosts.map((post) => post.data.tags).flat()),
-  ];
+  const allNow = await getCollection("now");
+
+  // Get tags from both blog and now
+  const blogTags = allPosts.map((post) => post.data.tags).flat();
+  const nowTags = allNow.map((post) => post.data.tags || []).flat();
+  const uniqueTags = [...new Set([...blogTags, ...nowTags])];
 
   return uniqueTags.map((tag) => {
     const filteredPosts = allPosts.filter((post) =>
       post.data.tags.includes(tag)
     );
+    const filteredNow = allNow.filter((post) =>
+      (post.data.tags || []).includes(tag)
+    );
     return {
       params: { tag },
-      props: { posts: filteredPosts },
+      props: { posts: filteredPosts, nowPosts: filteredNow },
     };
   });
 }
 
 const { tag } = Astro.params;
-const { posts } = Astro.props;
+const { posts, nowPosts } = Astro.props;
+
+// Render now update contents
+const renderedNow = await renderUpdates(nowPosts);
 ---
 
 <BaseLayout title={tag ?? ""} description="" permalink="/tags" current="tag">
-  <div class="w-[42rem] m-auto">
-    <h1>#{tag}</h1>
-    {
-      posts.map((post, index) => {
-        return (
-          <div>
-            {index !== 0 && <hr />}
-            <BlogCard post={post} />
-          </div>
-        );
-      })
-    }
+  <div class="max-w-2xl mx-auto">
+    <div class="mb-8">
+      <h1 class="text-2xl font-bold text-stone-900 dark:text-stone-100">
+        #{tag}
+      </h1>
+    </div>
+
+    {renderedNow.length > 0 && (
+      <div class="mb-12">
+        <h2 class="text-sm font-semibold text-stone-500 dark:text-stone-400 uppercase tracking-wide mb-4">
+          Now Updates
+        </h2>
+        <div class="space-y-4">
+          {renderedNow.map(({ update, content: Content }) => (
+            <NowCard update={update} content={Content} />
+          ))}
+        </div>
+      </div>
+    )}
+
+    {posts.length > 0 && (
+      <div>
+        <h2 class="text-sm font-semibold text-stone-500 dark:text-stone-400 uppercase tracking-wide mb-4">
+          Blog Posts
+        </h2>
+        <div class="space-y-4">
+          {posts.map((post, index) => {
+            return (
+              <div>
+                {index !== 0 && <hr class="border-stone-200 dark:border-stone-800 my-4" />}
+                <BlogCard post={post} />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    )}
+
+    {posts.length === 0 && renderedNow.length === 0 && (
+      <p class="text-stone-600 dark:text-stone-400">
+        No posts found with this tag.
+      </p>
+    )}
   </div>
 </BaseLayout>

@@ -1,0 +1,20 @@
+---
+export interface Props {
+  title: string;
+  linkUrl?: string;
+  linkText?: string;
+}
+
+const { title, linkUrl, linkText = "View all →" } = Astro.props;
+---
+
+<div class="flex items-center justify-between mb-8">
+  <h2 class="text-xl font-semibold text-stone-900 dark:text-stone-100">
+    {title}
+  </h2>
+  {linkUrl && (
+    <a href={linkUrl} class="text-sm text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 transition-colors">
+      {linkText}
+    </a>
+  )}
+</div>

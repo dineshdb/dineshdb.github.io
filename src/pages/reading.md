@@ -1,6 +1,6 @@
 ---
 layout: ../layouts/BaseLayout.astro
-title: 'My Reading List'
+title: "My Reading List"
 ---
 
 # My Reading List

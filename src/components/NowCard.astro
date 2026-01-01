@@ -1,0 +1,35 @@
+---
+import DateTime from "./DateTime.astro";
+import { getCardStyle } from "../utils/nowCardStyles";
+
+const { update, content: Content } = Astro.props;
+const type = update.data.type || "default";
+const style = getCardStyle(type);
+---
+
+<article class={`rounded-2xl border bg-white dark:bg-stone-900 p-4 ${style.border} hover:shadow-md transition-all duration-200`}>
+  <div class="flex items-center gap-3 mb-3">
+    <div class="w-10 h-10 rounded-full bg-stone-100 dark:bg-stone-800 shrink-0 flex items-center justify-center text-stone-600 dark:text-stone-400">
+      <div set:html={style.icon} />
+    </div>
+
+    <div class="flex-1 min-w-0">
+      <div class="flex items-center gap-2 mb-1">
+        <span class={`font-semibold text-sm ${style.nameColor}`}>Dinesh</span>
+        <span class="text-stone-500 dark:text-stone-400 text-xs">
+          <DateTime datetime={update.data.publishDate} />
+        </span>
+      </div>
+
+      {update.data.title && (
+        <p class={`font-semibold mb-1 text-base ${style.nameColor}`}>
+          {update.data.title}
+        </p>
+      )}
+    </div>
+  </div>
+
+  <div class="prose-compact">
+    <Content />
+  </div>
+</article>

@@ -1,13 +1,20 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getCollection } from "astro:content";
 import BlogCard from "../../components/BlogCard.astro";
+import NowCard from "../../components/NowCard.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
 import { getAllBlogItems } from "../../utils/getAllBlogItems";
+import { renderUpdates } from "../../utils/renderUpdates";
+import { getRecentUpdates } from "../../utils/content";
 
 const title = "Blog";
 const description = "Latest articles";
 
 const allPosts = await getAllBlogItems();
+const recentNow = await getRecentUpdates(2);
+
+// Render now update contents
+const renderedUpdates = await renderUpdates(recentNow);
 ---
 
 <BaseLayout
@@ -16,32 +23,31 @@ const allPosts = await getAllBlogItems();
   permalink="/blog"
   current="blog"
 >
-  <div class="w-[42rem] m-auto">
-    <h1 class="text-4xl">Blog</h1>
-    {
-      allPosts.map((post, index) => {
-        return <BlogCard post={post} />;
-      })
-    }
+  <div class="max-w-2xl mx-auto flex flex-col gap-4">
+    <div class="mb-4">
+      <h1 class="text-xl font-bold text-stone-900 dark:text-stone-100">
+        Writing
+      </h1>
+      <p class="text-stone-600 dark:text-stone-400 text-sm">
+        Notes on code, life, and everything in between.
+      </p>
+    </div>
+
+    <div class="flex flex-col gap-4">
+      {allPosts.map((post) => (
+        <BlogCard post={post} />
+      ))}
+    </div>
+
+    {renderedUpdates.length > 0 && (
+      <div class="pt-8">
+        <SectionHeader title="Recent Updates" linkUrl="/now" />
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {renderedUpdates.map(({ update, content: Content }) => (
+            <NowCard update={update} content={Content} />
+          ))}
+        </div>
+      </div>
+    )}
   </div>
 </BaseLayout>
-
-<style>
-  h2,
-  .title,
-  .post-item-footer {
-    font-family: var(--font-family-sans);
-    font-weight: 700;
-  }
-
-  .post-item-date {
-    color: var(--text-secondary);
-    text-align: left;
-    margin-right: 16px;
-    font-size: 0.5em;
-  }
-
-  hr {
-    margin: 60px auto;
-  }
-</style>

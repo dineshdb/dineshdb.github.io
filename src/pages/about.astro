@@ -13,35 +13,56 @@ const permalink = `/about`;
   permalink={permalink}
   current="about"
 >
-  <div class="container w-[42em] m-auto">
-    <Bio />
+  <div>
+    <div class="prose prose-stone dark:prose-invert max-w-none">
+      <div class="bg-white dark:bg-stone-900 rounded-2xl border border-stone-200 dark:border-stone-800 p-8 shadow-sm mb-8">
+        <Bio />
+      </div>
 
-    <ul>
-      <li><a href="/wish">My Wishlist</a></li>
-      <li><a href="/now">My latest updates</a></li>
-      <li><a href="/bucket">My bucket list</a></li>
-    </ul>
+      <div class="bg-white dark:bg-stone-900 rounded-2xl border border-stone-200 dark:border-stone-800 p-8 shadow-sm">
+        <h2 class="text-xl font-semibold text-stone-900 dark:text-stone-100 mb-4">
+          Quick Links
+        </h2>
+        <ul class="space-y-3">
+          <li>
+            <a
+              href="/wish"
+              class="text-stone-700 dark:text-stone-300 hover:text-orange-600 dark:hover:text-orange-400 transition-colors flex items-center gap-2"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+              My Wishlist
+            </a>
+          </li>
+          <li>
+            <a
+              href="/now"
+              class="text-stone-700 dark:text-stone-300 hover:text-orange-600 dark:hover:text-orange-400 transition-colors flex items-center gap-2"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+              My latest updates
+            </a>
+          </li>
+          <li>
+            <a
+              href="/bucket"
+              class="text-stone-700 dark:text-stone-300 hover:text-orange-600 dark:hover:text-orange-400 transition-colors flex items-center gap-2"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+              My bucket list
+            </a>
+          </li>
+        </ul>
 
-    <p>Keep visiting!</p>
+        <p class="text-stone-600 dark:text-stone-400 mt-6">
+          Keep visiting!
+        </p>
+      </div>
+    </div>
   </div>
 </BaseLayout>
-
-<style>
-  .about-image {
-    float: right;
-    margin: -3em -7em 2em 2em;
-    max-width: 300px;
-  }
-
-  .about-image img {
-    border-radius: 8px;
-    margin-bottom: 1.5em;
-  }
-
-  @media (max-width: 1020px) {
-    .about-image {
-      float: none;
-      margin: 0 auto 2em;
-    }
-  }
-</style>

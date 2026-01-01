@@ -39,8 +39,31 @@ const til = defineCollection({
   }),
 });
 
+const now = defineCollection({
+  type: "content",
+  schema: z.object({
+    type: z.enum([
+      "location",
+      "thought",
+      "mood",
+      "work",
+      "learning",
+      "goal",
+      "default",
+    ]).default("default"),
+    title: z.string().optional(),
+    description: z.string().optional(),
+    publishDate: z.coerce.date(),
+    endDate: z.coerce.date().optional(),
+    tags: z.array(z.string()).optional(),
+    location: z.string().optional(),
+    status: z.enum(["current", "past"]).default("past"),
+  }),
+});
+
 export const collections = {
   blog,
   authors,
   til,
+  now,
 };

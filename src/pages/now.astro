@@ -1,12 +1,32 @@
 ---
-import DateTime from "../components/DateTime.svelte";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { getLastModifiedDate } from "../utils/fileLastModifiedDate";
+import { getCollection } from "astro:content";
+import NowCard from "../components/NowCard.astro";
+import BlogCard from "../components/BlogCard.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import { renderUpdates } from "../utils/renderUpdates";
+import { withBlogUrls } from "../utils/content";
 
-const lastModified = getLastModifiedDate(`src/pages/now.astro`);
-const title = "What I am doing now";
-const description = "Now";
+const title = "Now";
+const description = "What I'm doing now — updates over time";
 const permalink = `/now`;
+
+const allUpdates = await getCollection("now");
+const updates = allUpdates.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+
+// Get tags from now updates to exclude from "Other Posts"
+const nowTags = new Set(updates.flatMap(u => u.data.tags || []));
+
+// Get 2 most recent blog posts that don't overlap with now topics
+const recentBlogs = withBlogUrls(
+  (await getCollection("blog"))
+    .filter(post => !post.data.tags?.some(tag => nowTags.has(tag)))
+    .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+    .slice(0, 2)
+);
+
+// Render all update contents upfront
+const renderedUpdates = await renderUpdates(updates);
 ---
 
 <BaseLayout
@@ -15,94 +35,31 @@ const permalink = `/now`;
   permalink={permalink}
   current="now"
 >
-  <div class="max-w-[42rem] m-auto">
-    <h1>{title}</h1>
-     Updated
-    <DateTime datetime={lastModified} />
-
-    <p>Location: Kathmandu, Nepal.</p>
-
-    <p>
-      <i>We were born with no purpose at all. You shouldn't die the same.</i>
-    </p>
-
-    <section>
-      <h2>My current goal is</h2>
-      <p>
-        to create a secondary source of income that doesn't require me to be
-        consistently present all the time. Bank interest and stock-markets don't
-        cut it because I want to get more involved but not as much as my day
-        job.
+  <div class="max-w-2xl mx-auto">
+    <div class="mb-8">
+      <h1 class="text-xl font-bold text-stone-900 dark:text-stone-100">
+        Now
+      </h1>
+      <p class="text-stone-600 dark:text-stone-400 text-sm">
+        Updates about what I'm doing, thinking, and exploring.
       </p>
-    </section>
+    </div>
 
-    <section>
-      <h2>Professional title?</h2>
-      <p>Software Engineer at Houzz, Inc.</p>
-    </section>
+    <div class="grid grid-cols-1 gap-4">
+      {renderedUpdates.map(({ update, content: Content }) => (
+        <NowCard update={update} content={Content} />
+      ))}
+    </div>
 
-    <section>
-      <h2>What do I do?</h2>
-      <p>I create software tools to solve your needs.</p>
-    </section>
-
-    <section>
-      <h2>Learning:</h2>
-      <ul>
-        <li>
-          Swimming: I'm a self-taught beginner. I practice at National Sports
-          Center, Chysal regularly in the morning.
-        </li>
-        <li>
-          Biking: Learning to ride my petrol-scooter(<i
-            >I know, I should have gone with the electric one</i
-          >). I know the basics and have ridden about 1400km of distance but
-          that doesn't make me comfortable for highly dangerous scenarious and
-          emergency braking. I want to be a pro at it. Would love some pointers
-          or trainers.
-        </li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Personal Development:</h2>
-      <ul>
-        <li>
-          Focusing: I'm trying to focus on doing one thing at a time. One tab,
-          one doc, one ticket. No more jumping between tiktok, ticket and a bug
-          😳. It's a real **struggle**.
-        </li>
-      </ul>
-
-      <section>
-        <h2>Work:</h2>
-        <ul>
-          <li>
-            Dayjob: Building websites and services for interior designers and
-            home-owners at Houzz Inc.
-          </li>
-        </ul>
-      </section>
-    </section>
-    <p>
-      Currenlty, I'm having existential crisis on my future. I'm not able to
-      decide what to do. I want to make impact on the society. I don't want to
-      be someone who is not remembered after they have died. But, I don't have
-      any clue how I can achieve that. Currenlty, I'm mulling over
-      <a
-        href="https://chavanniclass.com/2023/09/16/48-the-do-something-about-it-club/"
-        >Do Something About It Club</a
-      >
-       and Activism to identify ways I can get started.
-    </p>
-
-    <section>
-      <p>Check out my <a href="/reading">reading list</a> as well.</p>
-    </section>
-
-    <p>
-      This is <a href="https://nownownow.com/about">now</a> page and you too
-      should have one.
-    </p>
+    {recentBlogs.length > 0 && (
+      <div class="mt-16 pt-8">
+        <SectionHeader title="Other Posts" linkUrl="/blog" linkText="View all posts →" />
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {recentBlogs.map((post) => (
+            <BlogCard post={post} />
+          ))}
+        </div>
+      </div>
+    )}
   </div>
 </BaseLayout>

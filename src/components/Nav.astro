@@ -1,66 +1,29 @@
 ---
 const { current = "" } = Astro.props;
+
+const navItems = [
+  { href: "/", label: "Home", id: "" },
+  { href: "/blog", label: "Blog", id: "blog" },
+  { href: "/now", label: "Now", id: "now" },
+  { href: "/about", label: "Myself", id: "about" },
+];
 ---
 
-<style>
-  nav {
-    align-items: center;
-    display: flex;
-    flex: 1;
-    font-family: var(--font-family-sans);
-    font-weight: 700;
-    justify-content: flex-end;
-    text-transform: uppercase;
-  }
-
-  a {
-    color: inherit;
-    text-decoration: none;
-    padding: 10px 5px;
-    display: block;
-    position: relative;
-    margin-left: 20px;
-    min-width: 70px;
-    text-align: center;
-  }
-
-  a:not(.selected) {
-    opacity: 0.7;
-  }
-
-  a::before {
-    content: "";
-    position: absolute;
-    transition: transform 0.3s ease;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 2px;
-    background: var(--text-secondary);
-    transform: scaleX(0);
-  }
-
-  a:hover::before,
-  .selected::before {
-    transform: scaleX(1);
-  }
-
-  .selected::before {
-    background: var(--primary-color);
-  }
-
-  .theme-toggle-container {
-    width: 75px;
-  }
-</style>
-
-<nav>
-  <a class={current === "" ? "selected" : ""} href="/">home</a>
-  <a class={current === "blog" ? "selected" : ""} href="/blog">blog</a>
-  <a class={current === "now" ? "selected" : ""} href="/now">now</a>
-  <a class={current === "about" ? "selected" : ""} href="/about">about</a>
-
-  <!-- <div class="theme-toggle-container">
-    <ThemeToggleButton client:load />
-  </div> -->
+<nav class="flex items-center justify-between py-4">
+  <div class="flex items-center gap-6">
+    {navItems.map((item) => (
+      <a
+        href={item.href}
+        class={`
+          px-4 py-2 rounded-full text-sm font-medium transition-all duration-200
+          ${current === item.id
+            ? "bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400"
+            : "text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 hover:text-stone-900 dark:hover:text-stone-100"
+          }
+        `}
+      >
+        {item.label}
+      </a>
+    ))}
+  </div>
 </nav>

@@ -7,6 +7,7 @@ tags:
   - passwordless
   - sudo
   - linux
+  - how-to
 ---
 
 I don't really like typing my password every time I run sudo. Yes, I know it's

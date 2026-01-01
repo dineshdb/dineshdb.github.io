@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import calculateReadingTime from "reading-time";
 import Bio from "../../components/Bio.astro";
-import DateTime from "../../components/DateTime.svelte";
+import DateTime from "../../components/DateTime.astro";
 import Tag from "../../components/Tag.astro";
 import WebMentions from "../../components/WebMentions.svelte";
 import BaseLayout from "../../layouts/BaseLayout.astro";
@@ -25,44 +25,34 @@ const { Content, remarkPluginFrontmatter } = await entry.render();
   image={entry.data.image}
   current="blog"
 >
-  <header class="text-center">
-    <h1>{entry.data.title}</h1>
-    <h3>{entry.data.description}</h3>
-    <h4 class="text-secondary">
-      Updated <DateTime datetime={remarkPluginFrontmatter.lastModified} />
-      <time datetime={`P${readingTime.minutes}M`}> ~ {readingTime.text}</time>
-    </h4>
-    <h5 class="text-secondary">
-      {entry.data.tags.map((tag) => <Tag tag={tag} />)}
-    </h5>
-    <hr />
-  </header>
-  <div class="max-w-[42rem] m-auto">
-    <article>
+  <article class="max-w-2xl mx-auto">
+    <header class="mb-8">
+      <h1 class="text-3xl sm:text-4xl font-bold text-stone-900 dark:text-stone-100 leading-tight mb-4">
+        {entry.data.title}
+      </h1>
+      {entry.data.description && (
+        <p class="text-xl text-stone-600 dark:text-stone-400 mb-6">
+          {entry.data.description}
+        </p>
+      )}
+      <div class="flex flex-wrap items-center gap-3 text-sm text-stone-500 dark:text-stone-400">
+        <span>
+          <DateTime datetime={remarkPluginFrontmatter.publishDate} />
+        </span>
+        <span>·</span>
+        <span>{readingTime.text}</span>
+        {entry.data.tags.map((tag) => <Tag tag={tag} />)}
+      </div>
+      <hr class="mt-8 border-stone-200 dark:border-stone-800" />
+    </header>
+
+    <div class="prose max-w-none">
       <Content />
-    </article>
+    </div>
 
     <WebMentions client:only="svelte" />
 
-    <hr />
+    <hr class="my-8 border-stone-200 dark:border-stone-800" />
     <Bio />
-  </div>
+  </article>
 </BaseLayout>
-
-<style>
-  header h1 {
-    margin-bottom: 0.7em;
-  }
-
-  header p {
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    font-family: var(--font-family-sans);
-    font-weight: 600;
-  }
-
-  header hr {
-    min-width: 100px;
-    width: 30%;
-  }
-</style>

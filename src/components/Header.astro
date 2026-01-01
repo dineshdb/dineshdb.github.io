@@ -4,26 +4,8 @@ import Nav from "./Nav.astro";
 const { current = "" } = Astro.props;
 ---
 
-<style>
-  header {
-    display: flex;
-    margin: 0 auto;
-    max-width: 1400px;
-    padding: 2em;
-    width: 100%;
-  }
-  a.site-name {
-    text-transform: uppercase;
-    color: inherit;
-    padding: 10px 5px;
-    display: block;
-    position: relative;
-    margin-left: 20px;
-    min-width: 70px;
-    text-align: center;
-  }
-</style>
-
-<header>
-  <Nav current={current} />
+<header class="sticky top-0 z-50 w-full bg-white/80 dark:bg-stone-900/80 backdrop-blur-md border-b border-stone-200 dark:border-stone-800">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <Nav current={current} />
+  </div>
 </header>

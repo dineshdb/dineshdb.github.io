@@ -1,5 +1,5 @@
 ---
-title: I am no more a GNOMie
+title: I am no more ...a GNOMie
 author: dineshdb
 publishDate: 2025-01-10
 description: I have been using GNOME for the last decade, not anymore.
@@ -18,7 +18,7 @@ after going through dozens of distro-hopping and trying out different DEs.
 I became a Mozillian in 2017. I used Firefox as my main browser in the beginning. Then I switched to Chrome for its speed and compatibility and FOSS was not my concern at all. I was only interested in extracting value from what was available and not giving back. I was kind of dumb and selfish back then. I liked Linux only because it was much better than Windows at that time. I hadn't worked with MacOS at all (when I did, I installed Linux on it. It was Intel MBP and it's a long story). So for me, Linux was the **BEST** OS and that's why I chose it. With time, I started caring about FOSS philosophy, I learned more and switched to Firefox purely out of philosophy. At that time, Firefox was preparing to release Fission and I downloaded the beta version to try it out. Later, I downloaded nightly and have been riding the nightlies as my main browser ever since.
 </aside>
 
-# No more GNOME
+## No more GNOME
 
 I'm not saying this out of spite or hatred. GNOME is a good desktop and I love
 it. I like the simplicity. I like the aesthetics. I like that its snappy and I
