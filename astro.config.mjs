@@ -1,12 +1,13 @@
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
-import presetWind from "@unocss/preset-wind";
 import compressor from "astro-compressor";
 import preact from "@astrojs/preact";
-import unocss from "@unocss/astro";
-import presetAttributify from "@unocss/preset-attributify";
 import { modifiedTime } from "./src/utils/remarkLastModified";
 import svelte from "@astrojs/svelte";
+import remarkGfm from "remark-gfm";
+import remarkSmartypants from "remark-smartypants";
+import rehypeExternalLinks from "rehype-external-links";
+import tailwindcss from "@tailwindcss/postcss";
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,23 +18,27 @@ export default defineConfig({
     preact({
       compat: true,
     }),
-    unocss({
-      presets: [presetWind(), presetAttributify()],
-    }),
     svelte(),
   ],
   markdown: {
     shikiConfig: {
       theme: "nord",
     },
-    remarkPlugins: ["remark-gfm", "remark-smartypants", modifiedTime],
+    remarkPlugins: [remarkGfm, remarkSmartypants, modifiedTime],
     rehypePlugins: [
       [
-        "rehype-external-links",
+        rehypeExternalLinks,
         {
           target: "_blank",
         },
       ],
     ],
+  },
+  vite: {
+    css: {
+      postcss: {
+        plugins: [tailwindcss()],
+      },
+    },
   },
 });

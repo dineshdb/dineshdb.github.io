@@ -2,6 +2,7 @@
   import {formatDate} from "../utils/relativeTime.ts";
   export let datetime;
 
+  $: date = datetime ? new Date(datetime) : new Date();
 </script>
 
-<time {datetime}>{formatDate(new Date(datetime))}</time>
+<time {datetime}>{formatDate(date)}</time>

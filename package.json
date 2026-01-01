@@ -1,5 +1,5 @@
 {
-  "name": "astro-site",
+  "name": "dbhattarai",
   "version": "0.0.1",
   "type": "module",
   "scripts": {
@@ -11,28 +11,26 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^0.8.3",
-    "@astrojs/preact": "^2.2.2",
-    "@astrojs/rss": "^3.0.0",
-    "@astrojs/svelte": "^4.0.2",
-    "@unocss/astro": "^0.55.2",
-    "@unocss/preset-attributify": "^0.55.3",
-    "@unocss/preset-wind": "^0.55.3",
-    "@unocss/reset": "^0.55.2",
-    "astro": "^3.0.7",
-    "astro-compressor": "^0.4.0",
-    "postcss": "^8.4.28",
-    "preact": "^10.17.1",
+    "@astrojs/mdx": "^4.3.13",
+    "@astrojs/preact": "^4.1.3",
+    "@astrojs/rss": "^4.0.14",
+    "@astrojs/svelte": "^7.2.4",
+    "astro": "^5.16.6",
+    "astro-compressor": "^1.2.0",
+    "preact": "^10.28.1",
     "reading-time": "^1.5.0",
-    "rehype-external-links": "^2.0.0",
-    "sharp": "^0.32.5",
-    "svelte": "^4.2.0"
+    "rehype-external-links": "^3.0.0",
+    "sharp": "^0.33.5",
+    "svelte": "^5.46.1",
+    "tailwindcss": "^4.0.0",
+    "@tailwindcss/postcss": "^4.0.0",
+    "postcss": "^8.5.6"
   },
   "overrides": {
     "react": "npm:@preact/compat@latest",
     "react-dom": "npm:@preact/compat@latest"
   },
   "devDependencies": {
-    "@types/node": "^20.6.2"
+    "@types/node": "^22.10.1"
   }
 }
