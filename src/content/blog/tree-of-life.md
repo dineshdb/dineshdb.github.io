@@ -17,8 +17,8 @@ feel the same pain <br/> when it peels off?
 will it forget their existence <br/> when another takes its place? <br/> or will
 it remember being more,<br/> the sum of all that came before?
 
-does it mourn the fallen that came before <br/> or those that might fall next
+does it mourn the fallen, sunk to slumber <br/> or those that might fall next
 summer? <br/> or should it rejoice that it has lived long <br/> or should it
 just reach to live on
 
-does it know what it means to be wise<br/>who am I to tell otherwise? <br/>
+does it know what it is to be wise<br/>who am I to tell otherwise? <br/>
