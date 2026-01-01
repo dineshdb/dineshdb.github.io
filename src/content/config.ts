@@ -10,6 +10,13 @@ const blog = defineCollection({
     image: z.string().optional(),
     relatedPosts: z.array(reference("blog")).optional(),
     author: reference("authors"),
+    source: z
+      .object({
+        title: z.string(),
+        href: z.string(),
+        image: z.string().optional(),
+      })
+      .optional(),
   }),
 });
 
@@ -18,24 +25,6 @@ const authors = defineCollection({
   schema: z.object({
     name: z.string(),
     portfolio: z.string().url(),
-  }),
-});
-
-const til = defineCollection({
-  type: "content",
-  schema: z.object({
-    title: z.string(),
-    description: z.string().optional(),
-    publishDate: z.coerce.date(),
-    tags: z.array(z.string()),
-    source: z
-      .object({
-        title: z.string(),
-        href: z.string(),
-        image: z.string().optional(),
-      })
-      .optional(),
-    author: reference("authors"),
   }),
 });
 
@@ -64,6 +53,5 @@ const now = defineCollection({
 export const collections = {
   blog,
   authors,
-  til,
   now,
 };

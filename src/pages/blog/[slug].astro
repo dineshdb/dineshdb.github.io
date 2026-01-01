@@ -43,6 +43,18 @@ const { Content, remarkPluginFrontmatter } = await entry.render();
         <span>{readingTime.text}</span>
         {entry.data.tags.map((tag) => <Tag tag={tag} />)}
       </div>
+      {entry.data.source && (
+        <div class="mt-4">
+          <a
+            href={entry.data.source.href}
+            target="_blank"
+            rel="noopener"
+            class="text-sm text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 underline"
+          >
+            Source: {entry.data.source.title}
+          </a>
+        </div>
+      )}
       <hr class="mt-8 border-stone-200 dark:border-stone-800" />
     </header>
 

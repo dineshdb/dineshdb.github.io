@@ -6,6 +6,7 @@ description: Using sonar waves to predict the volume of content inside the conta
 tags:
   - paper-reading
   - tolearn
+  - TIL
 source:
   href: "http://www.dgp.toronto.edu/~mfan/papers/ubicomp2015-fan.pdf"
   title: Paper
@@ -18,7 +19,7 @@ until after a second. They call this acoustic probing. They do this for N-levels
 of contents and then use Support Vector Machines(SVM) to predict the level of
 the food inside. Since the volume might not match exactly into N levels, they
 then use Support Vector Regression(SVR) to transform those values into
-continuous levels instead of discreete levels. They continue to do this for many
+continuous levels instead of discretee levels. They continue to do this for many
 household containers for pantry. The solution provides robust method of
 non-deformable containers but the accuracy is very bad for deformable containers
 like chips and milk packets.
