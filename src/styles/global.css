@@ -11,7 +11,8 @@
   @apply max-w-none text-lg;
 }
 
-.prose p {
+.prose p,
+.prose pre.poem {
   @apply text-stone-600 dark:text-stone-300 mt-3 mb-3 leading-relaxed;
 }
 
@@ -81,6 +82,12 @@
 .prose pre {
   @apply my-4 p-3 overflow-x-auto bg-stone-900 dark:bg-stone-950 border
     border-stone-700 rounded-lg;
+}
+
+.prose pre.poem {
+  @apply border-none bg-none;
+  color: var(--color-stone-300);
+  font-family: var(--font-sans);
 }
 
 .prose pre code {

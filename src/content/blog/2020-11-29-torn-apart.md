@@ -12,10 +12,18 @@ believe me.
 
 ---
 
-Torn apart... <br /> from the very existence, <br /> to be an accessory to you -
-<br /> no longer my existence <br /> belongs to me.
+<pre class="poem">
+Torn apart...
+from the very existence,
+to be an accessory to you -
+no longer my existence
+belongs to me.
 
-Was I longing for you, <br /> unsure, incomplete <br /> I can no longer
-continue, <br /> or so I tell myself
+Was I longing for you,
+unsure, incomplete
+I can no longer continue,
+or so I tell myself
 
-I let go of you. <br /> It makes no difference to you, and no sense to me.
+I let go of you.
+It makes no difference to you, and no sense to me.
+</pre>
