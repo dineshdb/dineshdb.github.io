@@ -8,7 +8,7 @@ tags:
   - linux
 ---
 
-> *8GB of RAM without use of ZRAM or Swap isn't enough for even most day-to day
+> \*8GB of RAM without use of ZRAM or Swap isn't enough for even most day-to day
 > tasks. MacOS uses swap, which is slower than RAM and incurs precious
 > write-cycles to the SSD. Also, the typical usage of memory by the MacOS is
 > more than twice than on Linux even without any optimizations on Linux side.

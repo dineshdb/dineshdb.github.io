@@ -258,7 +258,8 @@ deserunt magna sunt laboris do do irure ea nostrud consequat ut voluptate ex.
     <a
       href="#"
       class="block mt-1 text-lg leading-tight font-semibold text-gray-900 hover:underline"
-    >Finding customers for your new business</a>
+      >Finding customers for your new business</a
+    >
     <p class="mt-2 text-gray-600">
       Getting a new business off the ground is a lot of hard work. Here are five
       ideas you can use to find your first customers.

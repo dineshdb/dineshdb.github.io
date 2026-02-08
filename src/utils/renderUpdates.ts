@@ -8,13 +8,10 @@ export async function renderUpdates<
 >(
   updates: T[],
 ): Promise<
-  Array<
-    {
-      update: T;
-      content: T extends { render(): Promise<{ Content: infer U }> } ? U
-        : never;
-    }
-  >
+  Array<{
+    update: T;
+    content: T extends { render(): Promise<{ Content: infer U }> } ? U : never;
+  }>
 > {
   return await Promise.all(
     updates.map(async (update) => ({

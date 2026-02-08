@@ -31,15 +31,17 @@ const authors = defineCollection({
 const now = defineCollection({
   type: "content",
   schema: z.object({
-    type: z.enum([
-      "location",
-      "thought",
-      "mood",
-      "work",
-      "learning",
-      "goal",
-      "default",
-    ]).default("default"),
+    type: z
+      .enum([
+        "location",
+        "thought",
+        "mood",
+        "work",
+        "learning",
+        "goal",
+        "default",
+      ])
+      .default("default"),
     title: z.string().optional(),
     description: z.string().optional(),
     publishDate: z.coerce.date(),
