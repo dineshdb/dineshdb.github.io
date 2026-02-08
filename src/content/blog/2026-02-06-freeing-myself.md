@@ -1,7 +1,7 @@
 ---
 title: Freeing myself
 author: dineshdb
-publishDate: 2026-02-04T12:43+05:45
+publishDate: 2026-02-06T12:43+05:45
 description: from your expectations
 tags:
   - poem
